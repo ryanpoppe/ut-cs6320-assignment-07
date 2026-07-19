@@ -1,0 +1,72 @@
+### CS6320 A7 run log — 2026-07-10T00:46:02Z
+### python Python 3.10.12, sklearn 1.7.2
+
+===== train_a7.py =====
+=== SELECTION TARGET: val persistence La Nina recall = 0.55 ===
+
+=== MODEL COMPARISON (val selection | test final) ===
+            model                                settings  val_recall_La_Nina  test_macro_f1  test_balanced_accuracy  test_recall_El_Nino  test_recall_La_Nina  test_recall_Neutral
+      persistence                             domain rule               0.550          0.516                   0.514                0.625                0.513                0.404
+logreg_unweighted  A5 champion, C=0.03, class_weight=None               0.475          0.649                   0.641                0.725                0.410                0.788
+  logreg_weighted class_weight La Nina=1.5 (val-selected)               0.550          0.655                   0.648                0.725                0.564                0.654
+  logreg_balanced                 class_weight='balanced'               0.550          0.645                   0.651                0.825                0.590                0.538
+ logreg_threshold  La Nina posterior x2.75 (val-selected)               0.725          0.627                   0.637                0.725                0.744                0.442
+
+=== CLASS-WEIGHT SWEEP (val) ===
+ lanina_weight  val_recall_LN  val_bal_acc  val_macro_f1  val_recall_El_Nino  val_recall_Neutral
+           1.0          0.475        0.713         0.680               0.895               0.770
+           1.5          0.550        0.695         0.653               0.895               0.639
+           2.0          0.550        0.673         0.627               0.895               0.574
+           2.5          0.625        0.687         0.637               0.895               0.541
+           3.0          0.650        0.690         0.638               0.895               0.525
+           4.0          0.750        0.690         0.623               0.895               0.426
+
+Selected La Nina weight = 1.5 ; selected threshold tau = 2.75
+
+=== CONFUSION before (unweighted) ===
+              pred_El Nino  pred_La Nina  pred_Neutral
+true_El Nino            29             0            11
+true_La Nina             1            16            22
+true_Neutral             7             4            41
+
+=== CONFUSION after (weighted) ===
+              pred_El Nino  pred_La Nina  pred_Neutral
+true_El Nino            29             0            11
+true_La Nina             1            22            16
+true_Neutral             7            11            34
+
+=== WALK-FORWARD La Nina recall ===
+     fold  n  persist_recall_LN  unweighted_recall_LN  weighted_recall_LN  unweighted_macro_f1  weighted_macro_f1
+2005-2006 24              0.200                 0.200               0.200                0.656              0.599
+2007-2008 24              0.529                 0.471               0.588                0.404              0.387
+2009-2010 24              0.600                 0.700               0.700                0.776              0.663
+2011-2012 24              0.750                 0.500               0.500                0.442              0.413
+2013-2014 24              0.000                 0.000               0.000                0.470              0.470
+2015-2016 24              0.000                 0.500               0.500                0.559              0.559
+2017-2018 24              0.333                 0.333               0.333                0.665              0.630
+2019-2020 24              0.500                 0.625               0.625                0.572              0.572
+2021-2022 24              0.778                 0.444               0.667                0.387              0.454
+2023-2024 24              0.000                 0.000               0.000                0.583              0.583
+2025-2025 11              0.000                 0.000               0.333                0.281              0.408
+
+=== SUMMARY ===
+{
+  "seed": 6320,
+  "n_train": 648,
+  "n_val": 120,
+  "n_test": 131,
+  "val_persistence_recall_LaNina": 0.55,
+  "test_persistence_recall_LaNina": 0.513,
+  "selected_lanina_weight": 1.5,
+  "selected_tau_lanina": 2.75,
+  "walkforward": {
+    "unweighted_mean_recall_LN": 0.343,
+    "weighted_mean_recall_LN": 0.404,
+    "persist_mean_recall_LN": 0.336,
+    "unweighted_mean_macro_f1": 0.527,
+    "weighted_mean_macro_f1": 0.522
+  }
+}
+
+===== make_plots.py =====
+wrote plots: ['classweight_sweep.png', 'confusion_before_after.png', 'per_class_recall_before_after.png', 'threshold_pr.png', 'walkforward_lanina.png']

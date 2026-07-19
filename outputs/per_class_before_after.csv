@@ -1,0 +1,10 @@
+class,model,support,recall,precision,f1
+El Nino,logreg_unweighted,40,0.725,0.784,0.753
+La Nina,logreg_unweighted,39,0.41,0.8,0.542
+Neutral,logreg_unweighted,52,0.788,0.554,0.651
+El Nino,logreg_weighted,40,0.725,0.784,0.753
+La Nina,logreg_weighted,39,0.564,0.667,0.611
+Neutral,logreg_weighted,52,0.654,0.557,0.602
+El Nino,persistence,40,0.625,0.676,0.649
+La Nina,persistence,39,0.513,0.488,0.5
+Neutral,persistence,52,0.404,0.396,0.4

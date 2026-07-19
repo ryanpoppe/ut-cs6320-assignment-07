@@ -1,0 +1,17 @@
+{
+  "seed": 6320,
+  "n_train": 648,
+  "n_val": 120,
+  "n_test": 131,
+  "val_persistence_recall_LaNina": 0.55,
+  "test_persistence_recall_LaNina": 0.513,
+  "selected_lanina_weight": 1.5,
+  "selected_tau_lanina": 2.75,
+  "walkforward": {
+    "unweighted_mean_recall_LN": 0.343,
+    "weighted_mean_recall_LN": 0.404,
+    "persist_mean_recall_LN": 0.336,
+    "unweighted_mean_macro_f1": 0.527,
+    "weighted_mean_macro_f1": 0.522
+  }
+}

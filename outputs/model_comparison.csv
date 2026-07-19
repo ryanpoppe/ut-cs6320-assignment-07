@@ -1,0 +1,6 @@
+model,settings,val_macro_f1,val_recall_La_Nina,test_accuracy,test_balanced_accuracy,test_macro_f1,test_recall_El_Nino,test_recall_La_Nina,test_recall_Neutral,note
+persistence,domain rule,0.472,0.55,0.504,0.514,0.516,0.625,0.513,0.404,prior bar; La Nina recall to match
+logreg_unweighted,"A5 champion, C=0.03, class_weight=None",0.68,0.475,0.656,0.641,0.649,0.725,0.41,0.788,A5/A6 result to beat on La Nina
+logreg_weighted,class_weight La Nina=1.5 (val-selected),0.653,0.55,0.649,0.648,0.655,0.725,0.564,0.654,PRIMARY cost-sensitive fix
+logreg_balanced,class_weight='balanced',0.595,0.55,0.641,0.651,0.645,0.825,0.59,0.538,standard inverse-frequency weighting
+logreg_threshold,La Nina posterior x2.75 (val-selected),0.659,0.725,0.618,0.637,0.627,0.725,0.744,0.442,DIAGNOSTIC threshold variant

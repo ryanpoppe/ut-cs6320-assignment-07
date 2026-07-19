@@ -1,0 +1,4 @@
+,pred_El Nino,pred_La Nina,pred_Neutral
+true_El Nino,29,0,11
+true_La Nina,1,22,16
+true_Neutral,7,11,34
